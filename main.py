@@ -2,8 +2,7 @@ import os
 from vazou_senha import verificar_senha_vazada
 
 logo = '''
-
-                                                                        
+                                                                     
  mm              mm         ]                    ."          .       .m 
 ]` `. .  m,     ]` ` m, .., ].,  m,      m,     .dm  m,  ,m .dm  m,  ` [
 'bm ] ] ' ]     'bm ]`] ]`] ]`] ' ]     ]`]      ]  ]`T  P ` ]  ]`]  .P 
@@ -23,16 +22,6 @@ while True:
    
     if x == '':
         senha = input('Digite uma senha para verificar se é forte: ')
-
-        # Verificando se a senha foi vazada
-        foi_vazada, vezes = verificar_senha_vazada(senha)
-
-        if foi_vazada:
-            pontos -= 10  # Penalidade pesada!
-            feedback.append(f' ALERTA! Esta senha foi vazada {vezes} vezes em vazamentos de dados!')
-        elif foi_vazada == False:
-            pontos += 5
-            print(' Senha não encontrada em vazamentos conhecidos')
 
         # Verificando comprimento
         if len(senha) >= 12:
@@ -79,6 +68,16 @@ while True:
                 print(item)
         else:
             print('\nSenha forte! Passou em todos os critérios.')
+
+        # Verificando se a senha foi vazada
+        foi_vazada, vezes = verificar_senha_vazada(senha)
+
+        if foi_vazada:
+            pontos -= 10  
+            print(f' ALERTA! Esta senha foi vazada {vezes} vezes em vazamentos de dados!\n RECOMENDO TROCAR SENHA')
+        elif foi_vazada == False:
+            pontos += 5
+            print(' Senha não encontrada em vazamentos conhecidos')
     else:
         print('Entrada inválida. Por favor, aperte Enter para começar.')
 
